@@ -4,21 +4,22 @@ import fs from 'fs';
 const getDiff = (data1, data2) => {
   const keys = _.sortBy(_.union(Object.keys(data1), Object.keys(data2)));
   const inner = keys
-  .flatMap((key) => {
-    if (!_.has(data1, key)) {
-      return `  + ${key}: ${data2[key]}`;
-    } else if (!_.has(data2, key)) {
-      return `  - ${key}: ${data1[key]}`;
-    } else if (data1[key] === data2[key]) {
-      return `    ${key}: ${data1[key]}`;
-    } else {
+    .flatMap((key) => {
+      if (!_.has(data1, key)) {
+        return `  + ${key}: ${data2[key]}`;
+      }
+      if (!_.has(data2, key)) {
+        return `  - ${key}: ${data1[key]}`;
+      }
+      if (data1[key] === data2[key]) {
+        return `    ${key}: ${data1[key]}`;
+      }
       return [
         `  - ${key}: ${data1[key]}`,
-        `  + ${key}: ${data2[key]}`
+        `  + ${key}: ${data2[key]}`,
       ];
-    }
-  })
-  .join('\n');
+    })
+    .join('\n');
   return `{\n${inner}\n}`;
 };
 
