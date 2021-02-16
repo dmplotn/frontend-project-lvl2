@@ -1,2 +1,4 @@
 test:
 		npm test
+lint:
+		
