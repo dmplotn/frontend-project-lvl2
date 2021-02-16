@@ -1,4 +1,4 @@
-  [Makefile]
+[Makefile]
 indent_style = tab
 
 [*.js]
