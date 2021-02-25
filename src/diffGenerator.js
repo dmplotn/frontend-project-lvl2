@@ -27,7 +27,7 @@ const getDiff = (data1, data2) => {
   return `{\n${inner}\n}`;
 };
 
-export default (filepath1, filepath2) => {
+const getParseredData = (filepath1, filepath2) => {
   const extName1 = path.extname(filepath1);
   const extName2 = path.extname(filepath2);
 
@@ -47,5 +47,10 @@ export default (filepath1, filepath2) => {
   const data1 = parse(fileContent1);
   const data2 = parse(fileContent2);
 
+  return [data1, data2];
+};
+
+export default (filepath1, filepath2) => {
+  const [data1, data2] = getParseredData(filepath1, filepath2);
   return getDiff(data1, data2);
 };
