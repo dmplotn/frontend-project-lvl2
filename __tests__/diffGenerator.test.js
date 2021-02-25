@@ -15,3 +15,11 @@ test('plain json', () => {
   const result = fs.readFileSync(resultPath, 'utf-8');
   expect(genDiff(beforePath, afterPath)).toBe(result);
 });
+
+test('plain yaml', () => {
+  const beforePath = getFixturePath('beforePlain.yaml');
+  const afterPath = getFixturePath('afterPlain.yaml');
+  const resultPath = getFixturePath('resultPlain.txt');
+  const result = fs.readFileSync(resultPath, 'utf-8');
+  expect(genDiff(beforePath, afterPath)).toBe(result);
+});
