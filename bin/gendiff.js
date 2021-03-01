@@ -7,13 +7,14 @@ program
   .arguments('<filepath1> <filepath2>')
   .description(packageConfig.description)
   .version(packageConfig.version)
-  .option('-f, --format [type]', 'output format')
+  .option('-f, --format [type]', 'output format', 'stylish')
   .parse(process.argv);
 
 const [filepath1, filepath2] = program.args;
+const { format } = program.opts();
 
 try {
-  const diff = generateDiff(filepath1, filepath2);
+  const diff = generateDiff(filepath1, filepath2, format);
   console.log(diff);
 } catch (err) {
   console.log(err.message);
