@@ -33,7 +33,7 @@ export default (filepath1, filepath2, format = 'stylish') => {
   const formatAst = getFormater(format);
 
   if (formatAst === null) {
-    throw new Error('Unknown forman name');
+    throw new Error('Unknown format name');
   }
 
   const ast = buildAst(data1, data2);
