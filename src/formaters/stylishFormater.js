@@ -42,7 +42,7 @@ const formatInner = (ast, depth = 0) => {
         part = `${indent}    ${name}: ${beforeValue}`;
         break;
       default:
-        throw new Error();
+        throw new Error(`Unknown node type(${type})`);
     }
 
     return part;
