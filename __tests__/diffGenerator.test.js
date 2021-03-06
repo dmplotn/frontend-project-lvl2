@@ -10,12 +10,15 @@ const getFixturePath = (filename) => path.join(__dirname, '..', '__fixtures__', 
 
 const stylishResult = fs.readFileSync(getFixturePath('stylishResult.txt'), 'utf-8');
 const plainResult = fs.readFileSync(getFixturePath('plainResult.txt'), 'utf-8');
+const jsonResult = fs.readFileSync(getFixturePath('jsonResult.txt'), 'utf-8');
 
 const cases = [
   ['before.json', 'after.json', 'stylish', stylishResult],
   ['before.yaml', 'after.yaml', 'stylish', stylishResult],
   ['before.json', 'after.json', 'plain', plainResult],
   ['before.yaml', 'after.yaml', 'plain', plainResult],
+  ['before.json', 'after.json', 'json', jsonResult],
+  ['before.yaml', 'after.yaml', 'json', jsonResult],
 ];
 
 test.each(cases)(
