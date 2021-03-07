@@ -5,7 +5,7 @@ const getFormater = (format) => {
   const mapping = {
     stylish: formatStylishAst,
     plain: formatPlainAst,
-    json: (ast) => JSON.stringify(ast, null, '\t'),
+    json: (ast) => JSON.stringify(ast),
   };
 
   return mapping[format] ?? null;
