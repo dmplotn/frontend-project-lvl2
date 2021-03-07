@@ -12,11 +12,9 @@ program
 const [filepath1, filepath2] = program.args;
 const { format } = program.opts();
 
-let diff;
 try {
-  diff = generateDiff(filepath1, filepath2, format);
+  const diff = generateDiff(filepath1, filepath2, format);
+  console.log(diff);
 } catch (err) {
   console.log(err.message);
 }
-
-console.log(diff);

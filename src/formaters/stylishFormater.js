@@ -21,31 +21,23 @@ const formatInner = (ast, depth = 0) => {
     const beforeValue = valueAsStr(node.beforeValue, depth);
     const afterValue = valueAsStr(node.afterValue, depth);
 
-    let part;
     switch (type) {
       case 'added':
-        part = `${indent}  + ${name}: ${afterValue}`;
-        break;
+        return `${indent}  + ${name}: ${afterValue}`;
       case 'deleted':
-        part = `${indent}  - ${name}: ${beforeValue}`;
-        break;
+        return `${indent}  - ${name}: ${beforeValue}`;
       case 'nested':
-        part = `${indent}    ${name}: {\n${formatInner(children, depth + 1)}\n${indent}    }`;
-        break;
+        return `${indent}    ${name}: {\n${formatInner(children, depth + 1)}\n${indent}    }`;
       case 'changed':
-        part = [
+        return [
           `${indent}  - ${name}: ${beforeValue}`,
           `${indent}  + ${name}: ${afterValue}`,
         ];
-        break;
       case 'unchanged':
-        part = `${indent}    ${name}: ${beforeValue}`;
-        break;
+        return `${indent}    ${name}: ${beforeValue}`;
       default:
         throw new Error(`Unknown node type(${type})`);
     }
-
-    return part;
   });
 
   return parts.join('\n');

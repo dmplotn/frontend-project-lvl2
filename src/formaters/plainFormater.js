@@ -17,28 +17,20 @@ const formatAst = (ast, nameParts = []) => {
     const afterValue = valueAsStr(node.afterValue);
     const fullName = [...nameParts, name].join('.');
 
-    let part;
     switch (type) {
       case 'added':
-        part = `Property '${fullName}' was added with value: ${afterValue}`;
-        break;
+        return `Property '${fullName}' was added with value: ${afterValue}`;
       case 'deleted':
-        part = `Property '${fullName}' was removed`;
-        break;
+        return `Property '${fullName}' was removed`;
       case 'nested':
-        part = formatAst(children, [...nameParts, name]);
-        break;
+        return formatAst(children, [...nameParts, name]);
       case 'changed':
-        part = `Property '${fullName}' was updated. From ${beforeValue} to ${afterValue}`;
-        break;
+        return `Property '${fullName}' was updated. From ${beforeValue} to ${afterValue}`;
       case 'unchanged':
-        part = [];
-        break;
+        return [];
       default:
         throw new Error(`Unknown node type(${type})`);
     }
-
-    return part;
   });
 
   return parts.join('\n');
